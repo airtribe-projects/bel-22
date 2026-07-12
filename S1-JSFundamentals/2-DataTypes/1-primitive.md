@@ -47,3 +47,15 @@ JavaScript has 7 primitive types.
 let x;
 
 
+# Symbol
+Unique Identification 
+
+```
+const player1 =  Symbol("Game");
+
+const player2 =  Symbol("Game");
+
+
+console.log(player1 === player2); -> false
+```
+
