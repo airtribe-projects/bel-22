@@ -124,3 +124,94 @@ Compares values after converting them to the same type
 Compares values and types without any type conversion
 Assigns a value to a variable
 Checks only reference equality for primitives
+
+
+### Q21. Every execution context in JavaScript runs in which two phases?
+Parsing Phase and Compilation Phase
+Creation Phase and Execution Phase
+Allocation Phase and Cleanup Phase
+Hoisting Phase and Garbage Collection Phase
+
+
+### Q22. Which statement about where variables live in memory is most accurate?
+Primitives always live in stack frames and objects always live in the heap, with no exceptions
+Primitives are commonly stored in stack frames and objects in the heap, but variables captured by a closure are preserved in the lexical environment (heap) so they outlive the stack frame
+All variables, primitive or object, are always stored in the heap
+All variables, primitive or object, are always stored in the stack
+
+
+### Q23. What is the output of the following code, based on how the Call Stack works?
+```js
+function first() {
+  second();
+  console.log("first");
+}
+
+function second() {
+  console.log("second");
+}
+
+first();
+```
+`first` then `second`
+`second` then `first`
+Only `first`
+Only `second`
+
+
+### Q24. What is the output of the following code?
+```js
+console.log(x);
+var x = 10;
+```
+`10`
+`undefined`
+`ReferenceError`
+`null`
+
+
+
+### Q25. What is the output of the following code?
+```js
+greet();
+
+function greet() {
+  console.log("Hello");
+}
+```
+`ReferenceError`
+`undefined`
+`Hello`
+`TypeError`
+
+
+### Q26. What is the output of the following code?
+```js
+{
+  let y = 20;
+}
+console.log(y);
+```
+`20`
+`undefined`
+`ReferenceError`
+`null`
+
+
+### Q27. What is the output of the following code?
+```js
+console.log(a);
+let a = 5;
+```
+`undefined`
+`5`
+`ReferenceError` due to the Temporal Dead Zone
+`null`
+
+### Q29. When JavaScript looks up a variable, in what order does it search the scope chain?
+Global scope → outer scope → current scope
+Current scope → parent scope → outer parent scope → global scope
+Only the current scope; it never searches outside
+It searches the call stack frames from top to bottom
+
+
