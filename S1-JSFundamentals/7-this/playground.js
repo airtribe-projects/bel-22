@@ -44,11 +44,69 @@ delete person.temp;
 // setTimeout(person2.greet.bind(person2), 1000);
 
 
+// const obj = {
+//   name: "Jay"
+// };
+
+// const arrow = () => {
+//   console.log(this.name);
+// };
+
+// arrow.call(obj);
+
+
+
+// const x = () => {
+//   let counter = 0;
+
+//   const y = () => {
+//     counter++;
+//     console.log(counter);
+//   }
+
+//   return y;
+// }
+
+// const fn = x();
+// fn(); fn(); fn();
+
+
+// const obj = {
+//   name: "Jay",
+//   greet: function () {
+//     const innerArrow = () => {
+//       console.log(this.name);
+//     };
+//     innerArrow();
+//   },
+// };
+
+// obj.greet();
+
+// 'use strict'
+function normal() {
+  const name = "Jay";
+  const arrFn = () => {
+    console.log(this.name);
+    console.log(name);
+  };
+  arrFn();
+}
+
+normal();
+
+
+
 const obj = {
-  name: "Jay"
+  name: "Jay", 
+  arrow: () => {
+    console.log(this);
+    console.log(this.name);
+  }
 };
 
 const arrow = () => {
+  console.log(this);
   console.log(this.name);
 };
 

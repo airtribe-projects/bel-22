@@ -208,10 +208,178 @@ let a = 5;
 `ReferenceError` due to the Temporal Dead Zone
 `null`
 
+
+### Q28. What does "lexical scope" mean in JavaScript?
+A function's scope is determined by where it is called from at runtime
+A function's scope is determined by where it is physically written in the source code
+A function's scope is determined by the `this` binding
+A function's scope is determined by the call stack order
+
+
+
+
 ### Q29. When JavaScript looks up a variable, in what order does it search the scope chain?
 Global scope → outer scope → current scope
 Current scope → parent scope → outer parent scope → global scope
 Only the current scope; it never searches outside
 It searches the call stack frames from top to bottom
+
+
+
+### Q30. What is the output of the following code?
+```js
+const x = () => {
+  let counter = 0;
+
+  const y = () => {
+    counter++;
+    console.log(counter);
+  }
+
+  return y;
+}
+
+const fn = x();
+fn(); fn(); fn();
+```
+`0 0 0`
+`1 1 1`
+`1 2 3`
+`ReferenceError because counter no longer exists`
+
+
+
+### Q31. Why does `counter` still exist after `outer()` has finished executing in a closure?
+JavaScript copies `counter` into the global scope automatically
+The returned `inner` function still references the outer lexical environment, so it is preserved
+The stack frame of `outer()` is never removed from the call stack
+`var` variables are always preserved after a function returns
+
+
+### Q32. Which statement about closures is most accurate?
+Closures copy the values of outer variables at the time the inner function is created
+Closures preserve references to variables in the outer lexical environment, not copies of their values
+Closures only work with `var`, not `let` or `const`
+Closures destroy the outer function's variables when execution finishes
+
+
+### Q33. Consider the following  implementation:
+```js
+function memo(fn) {
+  const cache = {};
+  
+  return function memoizedResponse(p1, p2, p3) {
+    const key = JSON.stringify([p1, p2, p3]);
+    
+    if (cache[key]) {
+      return cache[key];
+    }
+    
+    const result = fn(p1, p2, p3);
+    cache[key] = result;
+    return result;
+  };
+}
+
+const memoAdd = memo((a, b, c) => a + b + c);
+memoAdd(2, 3, 4);
+memoAdd(2, 3, 4);
+```
+Which concept makes this memoization possible by allowing `cache` to persist across calls to `memoAdd`?
+
+Hoisting of the `cache` variable to the global scope
+A closure preserving the lexical environment containing `cache`
+The `this` binding of `memoizedResponse`
+Garbage collection refusing to clean up `cache`
+
+
+### Q34. How is the value of `this` determined for a regular (non-arrow) function?
+A. Lexically, based on where the function is written in the source code
+B. At call time, based on how and by whom the function is called
+C. It is always bound to the global object regardless of context
+D. It is always bound to the function itself
+
+
+
+### Q35. What is the output of the following code (in non-strict mode, browser)?
+```js
+const obj = {
+  name: "Jay",
+  greet: function () {
+    console.log(this.name);
+  },
+};
+
+obj.greet();
+const grt = obj.greet;
+grt();
+```
+`Jay` then `Jay`
+`undefined` then `Jay`
+`Jay` then `undefined` (or empty, since `this` becomes `window/global`)
+`ReferenceError` on the second call
+
+
+
+### Q36. Which statement about arrow functions and `this` is correct?
+A. Arrow functions have their own `this` based on how they are called
+B. Arrow functions always bind `this` to the global object
+C. Arrow functions always bind `this` to `undefined`
+D. Arrow functions do not have their own `this`; they capture `this` from the lexical scope where they are defined
+
+
+### Q37. In strict mode, what is the value of `this` inside a standalone function call like `normal()`?
+`undefined`
+The global object (`window` or `global`)
+The function itself
+An empty object `{}`
+
+
+### Q38. What is the output of the following code?
+```js
+const obj = {
+  name: "Jay",
+  greet: function () {
+    const innerArrow = () => {
+      console.log(this.name);
+    };
+    innerArrow();
+  },
+};
+
+obj.greet();
+```
+`undefined`
+`Jay`
+`ReferenceError`
+`window`
+
+
+
+### Q39. What is the output of the following code (non-strict mode)?
+```js
+function normal() {
+  const name = "Jay";
+  const arrFn = () => {
+    console.log(this.name);
+    console.log(name);
+  };
+  arrFn();
+}
+
+normal();
+```
+`Jay`
+`undefined`
+`ReferenceError`
+`null`
+
+
+### Q40. Which statement best summarizes the difference between lexical scope and `this`?
+Lexical scope and `this` are the same thing in JavaScript
+Lexical scope defines where a function was written (variable access); `this` defines who called the function at runtime
+Lexical scope defines who called the function; `this` defines where the function was written
+Both are determined purely at runtime based on the call site
+
 
 

@@ -1,13 +1,13 @@
-// const name = "Jay";
-// const student = {
-//     name: "Rahul",
-//     greet() {
-//         console.log(name);
-//         console.log(this.name);
-//     }
-// }
+const name = "Jay";
+const student = {
+    name: "Rahul",
+    greet() {
+        console.log(name);
+        console.log(this.name);
+    }
+}
 
-// student.greet();
+student.greet();
 
 // const greet = student.greet;
 // console.log(this);
